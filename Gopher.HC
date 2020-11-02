@@ -264,7 +264,8 @@ U0 GopherDlPrompt(U8* host, U16 port, U8* selector)
 	
 	basename = GopherBasename(selector);
 	MemCpy(form.name, basename,
-		MinI64(StrLen(basename), sizeof(form.name)));
+		MinI64(StrLen(basename), sizeof(form.name) - 1));
+	form.name[255] = 0;
 	if (PopUpForm(&form))
 	{
 		GopherDl(host, port, selector, , form.name);
