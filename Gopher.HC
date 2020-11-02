@@ -99,7 +99,7 @@ U0 PrintEscaped(U8* txt, U8* backslashes = "")
 	{
 		offending = *cur;
 		*cur = 0;
-		if (offending == '$')
+		if (offending == '$$')
 		{
 			"%s$$$$", txt;
 		}
