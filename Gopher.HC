@@ -99,7 +99,7 @@ U0 PrintEscaped(U8* txt, U8* backslashes = "")
 	{
 		offending = *cur;
 		*cur = 0;
-		if (offending == '\\')
+		if (offending == '$')
 		{
 			"%s$$$$", txt;
 		}
@@ -140,7 +140,7 @@ U0 GopherTextView(U8* host, U16 port, U8* selector)
 	}
 	else
 	{
-		PrintErr("Failed to download %s from %s:%p\n",
+		PrintErr("Failed to download %s from %s:%d\n",
 			selector, host, port);
 	}
 	Free(tmpname);
@@ -264,7 +264,7 @@ U0 GopherDlPrompt(U8* host, U16 port, U8* selector)
 	
 	basename = GopherBasename(selector);
 	MemCpy(form.name, basename,
-		MaxI64(StrLen(basename), sizeof(form.name)));
+		MinI64(StrLen(basename), sizeof(form.name)));
 	if (PopUpForm(&form))
 	{
 		GopherDl(host, port, selector, , form.name);
