@@ -130,6 +130,8 @@ U0 GopherTextView(U8* host, U16 port, U8* selector)
 	U8* basename;
 	U8* tmpname;
 	
+	DirMk("::/Tmp/Gopher");
+	
 	basename = ExtChg(GopherBasename(selector), "TXT");
 	tmpname = StrPrint(NULL, "::/Tmp/Gopher/%s", basename);
 	Free(basename);
